@@ -27,8 +27,8 @@ class CommentManager(models.Manager):
     def all_comments_by_object(self, obj, include_flagged=False):
         content_type = ContentType.objects.get_for_model(obj.__class__)
         if include_flagged:
-            return self.filter(content_type=content_type, object_id=obj.id)
-        return self.all_exclude_flagged().filter(content_type=content_type, object_id=obj.id)
+            return self.filter(content_type=content_type, object_id=obj.pk)
+        return self.all_exclude_flagged().filter(content_type=content_type, object_id=obj.pk)
 
     def filter_parents_by_object(self, obj, include_flagged=False):
         if include_flagged:
